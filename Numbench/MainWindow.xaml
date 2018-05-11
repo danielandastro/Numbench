@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Numbench"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="NumBench Mathematical Benchmark System" Height="273.53" Width="631.092">
+    <Grid x:Name="bttn" Margin="0,10,0,0">
+        <Label Content="Metric 1" HorizontalAlignment="Left" Margin="33,31,0,0" VerticalAlignment="Top" Width="136" Height="24"/>
+        <Label Content="Metric 2" HorizontalAlignment="Left" Margin="33,84,0,0" VerticalAlignment="Top" Width="136" Height="24"/>
+        <TextBox x:Name="met1" HorizontalAlignment="Left" Height="23" Margin="436,35,0,0" TextWrapping="Wrap" Text="00:00:00.0000" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        <TextBox x:Name="met2" HorizontalAlignment="Left" Height="23" Margin="436,79,0,0" TextWrapping="Wrap" Text="00:00:00.0000" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        <Label Content="Final Result" HorizontalAlignment="Left" Margin="33,169,0,0" VerticalAlignment="Top" Width="136" Height="24" RenderTransformOrigin="0.488,1.362"/>
+        <TextBox x:Name="met3" HorizontalAlignment="Left" Height="23" Margin="436,169,0,0" TextWrapping="Wrap" Text="00:00:00.0000" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+
+        <Button Content="Begin Calculation" Width="120" Margin="436,117,67,44" VerticalAlignment="Top" Click="Button_Click_1" />
+
     </Grid>
 </Window>
