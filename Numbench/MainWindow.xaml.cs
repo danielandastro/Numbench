@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace Numbench
@@ -12,12 +13,11 @@ namespace Numbench
             InitializeComponent();
         }
 
-        public static string Process(int digits)
+        public static async void Process(int digits)
         {
             var result = new StringBuilder();
             result.Append("3.");
             var startTime = DateTime.Now;
-            if (digits <= 0) return result.ToString();
             for (var i = 0; i < digits; i += 9)
             {
                 var ds = CalculatePiDigits(i + 1);
@@ -26,7 +26,6 @@ namespace Numbench
                 result.Append(ds.Substring(0, digitCount));
             }
 
-            return result.ToString();
         }
 
         private static int Mul_mod(int a, int b, int m)
@@ -172,30 +171,39 @@ namespace Numbench
             return result;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
             var nwatch = new Stopwatch();
             var watch = new Stopwatch();
             ulong n1 = 0, n2 = 1;
             long i;
             watch.Start();
-            Process(999);
+            await Task.Run(()=> Process(999));
             watch.Stop();
             met1.Text = watch.Elapsed.ToString();
             nwatch.Start();
-            for (i = 2; i < 999999999.0; ++i)
-            {
-                var n3 = n1 + n2;
-                n1 = n2;
-                n2 = n3;
-            }
-
+            await Task.Run(() => Fibonacci(999999999.0));
+            
             nwatch.Stop();
             met2.Text = nwatch.Elapsed.ToString();
             double temp = nwatch.ElapsedMilliseconds * watch.ElapsedMilliseconds;
             temp = Math.Log10(temp);
             temp = 1 / temp;
+            temp = temp * 100;
+            temp = Math.Round(temp);
             met3.Text = temp.ToString();
+        }
+
+        private static async void Fibonacci(double number)
+        {
+            ulong n1 = 1 , n2 = 1;
+            long i;
+            for (i = 2; i < number; ++i)
+            {
+                var n3 = n1 + n2;
+                n1 = n2;
+                n2 = n3;
+            }
         }
     }
 }
